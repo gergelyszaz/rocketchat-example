@@ -3,10 +3,13 @@
   "image": "rocketchat/rocket.chat:0.68.3",
   "env": {
     "MONGO_URL": "mongodb://db:27017/rocketchat",
-    "DEPLOY_PLATFORM": "wedeploy"
+    "DEPLOY_PLATFORM": "wedeploy",
+    "Search.Provider": "chatpalProvider",
+    "Search.chatpalProvider.Backend": "onsite",
+    "Search.chatpalProvider.Base_URL": "http://chatpal:8983/solr/chatpal"
   },
   "cpu": 1,
   "memory": 1024,
   "port": 0,
-  "dependencies": ["db"]
+  "dependencies": ["db", "chatpal"]
 }
