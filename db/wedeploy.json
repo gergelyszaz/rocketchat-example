@@ -7,5 +7,5 @@
   "volumes": {
     "data": "/data/db"
   },
-  "zeroDowntime": false
+  "zeroDowntime": true
 }
