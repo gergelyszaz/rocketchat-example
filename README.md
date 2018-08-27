@@ -2,7 +2,7 @@
 
 # Rocket.Chat
 
-An example of [Rocket.Chat](https://hub.docker.com/_/rocket.chat/) and [MongoDB](https://hub.docker.com/_/mongo/) on [WeDeploy](https://wedeploy.com/).
+A more extensive example of [Rocket.Chat](https://hub.docker.com/_/rocket.chat/), [MongoDB](https://hub.docker.com/_/mongo/), [Chatpal](https://chatpal.io/) and [Minio](https://minio.io/) with automatic off-site backup using [Rclone](https://rclone.org/) on [WeDeploy](https://wedeploy.com/).
 
 ## Instructions
 
@@ -10,6 +10,7 @@ An example of [Rocket.Chat](https://hub.docker.com/_/rocket.chat/) and [MongoDB]
 2. Clone this repository.
 3. Open the project with your command line and run `we deploy -p yourproject`.
 4. Add `NGINX_HOST` environment variable with the domain you would like to use to `proxy` service
+5. For the automatic offsite backup, please read the documentation of [openbridge/ob_bulkstash](https://github.com/openbridge/ob_bulkstash/) and [Rclone](https://rclone.org/)
 
 ## License
 
