@@ -4,8 +4,5 @@
   "cpu": 2,
   "memory": 4096,
   "port": 0,
-  "volumes": {
-    "data": "/data/db"
-  },
   "zeroDowntime": true
 }
