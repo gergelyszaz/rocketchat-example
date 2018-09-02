@@ -1,0 +1,14 @@
+{
+  "id": "dbbackup",
+  "cpu": 0.05,
+  "memory": 32,
+  "port": 0,
+  "env": {
+    "MONGO_HOST": "db"
+  },
+  "volumes": {
+    "backups": "/backups",
+    "dump": "/dbdump"
+  },
+  "zeroDowntime": false
+}
