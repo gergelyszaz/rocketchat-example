@@ -1,0 +1,17 @@
+{
+    "id": "rclone",
+    "image": "openbridge/ob_bulkstash",
+    "cpu": 0.5,
+    "memory": 128,
+    "port": 0,
+    "env": {
+        "RCLONE_CROND_SCHEDULE": "0 3 * * *",
+        "RCLONE_CROND_SOURCE_PATH": "/backups",
+        "RCLONE_CROND_DESTINATION_PATH": "MAGI:chatbackups"
+    },
+    "volumes" : {
+        "backups" : "/backups"
+    },
+    "dependencies": ["dbbackupper"],
+    "command": ["rclone", "copy", "/backups", "MAGI:chatbackups"]
+}
