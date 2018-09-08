@@ -1,6 +1,6 @@
 {
   "id": "db",
-  "image": "mongo:4.0.1-xenial",
+  "image": "mongo:4.0.2",
   "cpu": 2,
   "memory": 4096,
   "port": 0,
