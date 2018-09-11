@@ -7,11 +7,11 @@
     "env": {
         "RCLONE_CROND_SCHEDULE": "0 3 * * *",
         "RCLONE_CROND_SOURCE_PATH": "/backups",
-        "RCLONE_CROND_DESTINATION_PATH": "MAGI:chatbackups"
+        "RCLONE_CROND_DESTINATION_PATH": "REMOTE:chatbackups"
     },
     "volumes" : {
         "backups" : "/backups"
     },
-    "dependencies": ["dbbackupper"],
-    "command": ["rclone", "copy", "/backups", "MAGI:chatbackups"]
+    "dependencies": ["dbbackup"],
+    "command": ["rclone", "copy", "/backups", "REMOTE:chatbackups"]
 }
