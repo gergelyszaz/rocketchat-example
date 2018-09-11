@@ -3,6 +3,6 @@
   "image": "mongo:4.0.2",
   "cpu": 2,
   "memory": 4096,
-  "port": 0,
+  "public" : false,
   "zeroDowntime": true
 }

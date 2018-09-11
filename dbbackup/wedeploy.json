@@ -2,7 +2,7 @@
   "id": "dbbackup",
   "cpu": 1,
   "memory": 128,
-  "port": 0,
+  "public" : false,
   "env": {
     "MONGO_HOST": "db"
   },

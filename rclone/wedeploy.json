@@ -3,7 +3,7 @@
     "image": "openbridge/ob_bulkstash",
     "cpu": 0.5,
     "memory": 128,
-    "port": 0,
+    "public" : false,
     "env": {
         "RCLONE_CROND_SCHEDULE": "0 3 * * *",
         "RCLONE_CROND_SOURCE_PATH": "/backups",

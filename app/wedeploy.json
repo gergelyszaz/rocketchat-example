@@ -10,6 +10,6 @@
   },
   "cpu": 1,
   "memory": 1024,
-  "port": 0,
   "dependencies": ["db", "chatpal"]
+  "public" : false,
 }
