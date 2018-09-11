@@ -1,7 +1,7 @@
 {
   "id": "dbbackup",
-  "cpu": 0.05,
-  "memory": 32,
+  "cpu": 1,
+  "memory": 128,
   "port": 0,
   "env": {
     "MONGO_HOST": "db"
