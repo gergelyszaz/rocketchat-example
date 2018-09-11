@@ -7,8 +7,7 @@
     "MONGO_HOST": "db"
   },
   "volumes": {
-    "backups": "/backups",
-    "dump": "/dbdump"
+    "backups": "/backups"
   },
   "zeroDowntime": false
 }
