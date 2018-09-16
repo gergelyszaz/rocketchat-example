@@ -4,6 +4,12 @@
   "env": {
     "MONGO_URL": "mongodb://db:27017/rocketchat",
     "DEPLOY_PLATFORM": "wedeploy",
+    "CDN_PREFIX": "/static",
+    "Accounts_AllowUserProfileChange": "false",
+    "Accounts_AllowRealNameChange": "false",
+    "Accounts_AllowUsernameChange": "false",
+    "Accounts_AllowEmailChange": "false",
+    "Unread_Count": "all_messages",
     "Search.Provider": "chatpalProvider",
     "Search.chatpalProvider.Backend": "onsite",
     "Search.chatpalProvider.Base_URL": "http://chatpal:8983/solr/chatpal"
