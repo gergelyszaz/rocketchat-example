@@ -2,6 +2,8 @@
 
 # Rocket.Chat
 
+![Diagram](https://gist.githubusercontent.com/balcsida/fdbdc8e32e40391be28bbe16116279e9/raw/cc59e6d3678986352c9b9e5bbc6c3d18cfb37962/rocketchat-example.svg?sanitize=true)
+
 A more extensive example of [Rocket.Chat](https://hub.docker.com/_/rocket.chat/), [MongoDB](https://hub.docker.com/_/mongo/), [Chatpal](https://chatpal.io/) and [Minio](https://minio.io/) with automatic off-site backup using [Rclone](https://rclone.org/) on [WeDeploy](https://wedeploy.com/).
 
 ## Instructions
