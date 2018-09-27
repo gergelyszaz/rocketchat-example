@@ -5,6 +5,7 @@ set -e
 CRON_SCHEDULE=${CRON_SCHEDULE:-0 0 * * *}
 export MONGO_HOST=${MONGO_HOST:-db}
 export MONGO_PORT=${MONGO_PORT:-27017}
+export HEALTHCHECK_SCHEDULE=${HEALTHCHECK_SCHEDULE:-* * * * *}
 
 if [[ "$1" == 'no-cron' ]]; then
     exec /backup.sh
@@ -15,7 +16,7 @@ else
     fi
     CRON_ENV="MONGO_HOST='$MONGO_HOST'"
     CRON_ENV="$CRON_ENV\nMONGO_PORT='$MONGO_PORT'"
-    echo -e "$CRON_ENV\n$CRON_SCHEDULE /backup.sh > $LOGFIFO 2>&1" | crontab -
+    echo -e "$CRON_ENV\n$CRON_SCHEDULE /backup.sh > $LOGFIFO 2>&1\n$HEALTHCHECK_SCHEDULE /healthcheck.sh > $LOGFIFO 2>&1" | crontab -
     crontab -l
     cron
     tail -f "$LOGFIFO"
