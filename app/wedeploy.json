@@ -13,6 +13,10 @@
     "Search.Provider": "chatpalProvider",
     "Search.chatpalProvider.Backend": "onsite",
     "Search.chatpalProvider.Base_URL": "http://chatpal:8983/solr/chatpal"
+    "Message_ShowEditedStatus": 0,
+    "Message_Read_Receipt_Enabled": 1,
+    "Message_Read_Receipt_Store_Users": 1,
+    "Message_AllowSnippeting": 1,
   },
   "cpu": 1,
   "memory": 1024,
