@@ -17,6 +17,9 @@
     "Message_Read_Receipt_Enabled": 1,
     "Message_Read_Receipt_Store_Users": 1,
     "Message_AllowSnippeting": 1,
+    "FileUpload_Storage_Type": "AmazonS3",
+    "FileUpload_S3_Bucket": "rocketchat",
+    "FileUpload_S3_BucketURL": "http://storage/rocketchat"
   },
   "cpu": 1,
   "memory": 1024,
