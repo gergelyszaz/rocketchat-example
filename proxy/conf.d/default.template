@@ -1,56 +1,63 @@
 # Upstreams
 upstream backend {
-    zone backend 128k;
+    ip_hash;
     server app:3000;
 }
 
 ssl_session_cache   shared:SSL:10m;
 ssl_session_timeout 10m;
 
-proxy_cache_path /tmp/cache keys_zone=cache:10m levels=1:2 inactive=600s max_size=100m;
+proxy_cache_path /tmp/cache levels=1:2 keys_zone=cache:10m inactive=60m max_size=1g use_temp_path=off;
 
 # HTTPS Server
 server {
-    proxy_cache cache;
-    proxy_cache_lock on;
-    proxy_cache_valid 200 1s;
-    proxy_cache_use_stale updating;
+    proxy_cache                 cache;
+    proxy_cache_lock            on;
+    proxy_cache_valid           200 1m;
+    proxy_cache_use_stale       updating;
+    add_header                  X-Cache-Status $upstream_cache_status;
 
-    listen              443 reuseport;
-    server_name         ${NGINX_HOST};
-    keepalive_timeout   70;
+    listen                      443 reuseport;
+    server_name                 ${NGINX_HOST};
+    keepalive_timeout           70;
 
-    access_log          /var/log/nginx/access.log;
-    error_log           /var/log/nginx/error.log debug;
+    access_log                  /var/log/nginx/access.log;
+    error_log                   /var/log/nginx/error.log debug;
 
-    ssl_certificate     /certs/certificate.crt;
-    ssl_certificate_key /certs/certificate.key;
-    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2; # don’t use SSLv3 ref: POODLE
-    ssl_session_cache   builtin:1000 shared:SSL:10m;
-    ssl_ciphers         EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
-    ssl_prefer_server_ciphers on;
+    ssl_certificate             /certs/certificate.crt;
+    ssl_certificate_key         /certs/certificate.key;
+    ssl_protocols               TLSv1 TLSv1.1 TLSv1.2; # don’t use SSLv3 ref: POODLE
+    ssl_session_cache           builtin:1000 shared:SSL:10m;
+    ssl_ciphers                 EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+    ssl_prefer_server_ciphers   on;
 
     location / {
-        proxy_pass       http://app:3000;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-Protocol $scheme;
-        
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        add_header Service-Worker-Allowed /;
-        proxy_redirect off;
-        proxy_buffering on;
-    }
-    location ~* ^(?!/media).*.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
-        root /tmp/nginx/trash/trash_media;
-        expires 35d; # REMOVE THISSSSSSSS
-        add_header Pragma public;
-        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
-        access_log off;
+        proxy_pass          http://backend/;
+        proxy_http_version  1.1;
+        proxy_set_header    Host $http_host;
+        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header    X-Real-IP $remote_addr;
+        proxy_set_header    X-Forwarded-Protocol $scheme;
+        proxy_set_header    Upgrade $http_upgrade;
+        proxy_set_header    Connection "upgrade";
+        add_header          Service-Worker-Allowed /;
+        proxy_redirect      off;
+        proxy_buffering     on;
     }
     location /static/ {
-       proxy_pass http://app:3000/;
+        proxy_pass          http://backend/;
+        proxy_cache_valid   200 30m;
+        expires             30d;
+        add_header          Cache-Control "public, no-transform";
+    }
+    location /sounds/ {
+        proxy_pass          http://backend/sounds/;
+        expires             30d;
+        add_header          Cache-Control "public, no-transform";
+    }
+    location /packages/emojione_emojione/assets/sprites/emojione.sprites.png {
+        proxy_pass          http://backend/packages/emojione_emojione/assets/sprites/emojione.sprites.png;
+        expires             30d;
+        add_header          Cache-Control "public, no-transform";
     }
 }
