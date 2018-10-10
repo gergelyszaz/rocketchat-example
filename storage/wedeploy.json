@@ -7,5 +7,10 @@
     "data": "/data",
     "config": "/root/.minio"
   },
+  "env": {
+    "MINIO_COMPRESS": "true",
+    "MINIO_COMPRESS_EXTENSIONS": ".pdf,.doc,.txt,.css,.js,.html,.svg,.xml,.java",
+    "MINIO_BROWSER": "on"
+  },
   "command": ["minio", "server", "/data"]
 }
