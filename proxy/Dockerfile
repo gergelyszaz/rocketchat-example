@@ -1,6 +1,4 @@
-FROM nginx:1.15.3-alpine
-
-RUN mkdir /certs
+FROM nginx:1.15.5-alpine
 
 COPY conf.d/* /etc/nginx/conf.d/
 
